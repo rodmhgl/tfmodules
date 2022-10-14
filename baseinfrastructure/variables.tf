@@ -6,7 +6,6 @@ variable "tags" {
 variable "resource_groups" {
   type = map(object({
     resource_group_location = string
-    tags                    = map(string)
   }))
   description = "Map of resource groups to create."
 }
