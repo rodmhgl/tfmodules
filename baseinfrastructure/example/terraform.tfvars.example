@@ -1,0 +1,49 @@
+tags = {
+  environment = "dev"
+}
+
+resource_groups = {
+  base_rg = {
+    resource_group_location = "eastus"
+    tags                    = {}
+  }
+}
+
+virtual_networks = {
+  base_network = {
+    resource_group_key = "base_rg"
+    address_space      = ["10.0.0.0/16"]
+  }
+}
+
+subnets = {
+  vm_subnet = {
+    resource_group_key                            = "base_rg"
+    vnet_key                                      = "base_network"
+    address_prefixes                              = ["10.0.1.0/24"]
+    private_endpoint_network_policies_enabled     = true
+    private_link_service_network_policies_enabled = true
+    #service_endpoints                             = ["Microsoft.Storage"]
+    service_endpoint_policy_ids = []
+  }
+}
+
+nsgs = {
+  vm_subnet_nsg = {
+    resource_group_key = "base_rg"
+    subnet_key         = "vm_subnet"
+    security_rules = {
+      IBA-SSH = {
+        name                       = "IBA-SSH"
+        priority                   = "100"
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        source_address_prefix      = "*"
+        destination_port_range     = "22"
+        destination_address_prefix = "*"
+      }
+    }
+  }
+}
