@@ -27,13 +27,12 @@ resource "azurerm_subnet" "this" {
   address_prefixes                              = each.value.address_prefixes # list
   private_endpoint_network_policies_enabled     = try(each.value.private_endpoint_network_policies_enabled, true)
   private_link_service_network_policies_enabled = try(each.value.private_link_service_network_policies_enabled, true)
+  service_endpoints                             = try(each.value.service_endpoints, null)
   #TODO: #1 Add dynamic delegation block
   #TODO: #2 Add service endpoint support
   #TODO: #3 Add service endpoint policy id support
   #TODO: #4 Add service delegation block support
 }
-
-#TODO: #5 Add Network Security Group and NSG Subnet Assoociation support
 
 resource "azurerm_network_security_group" "this" {
   for_each            = var.nsgs
