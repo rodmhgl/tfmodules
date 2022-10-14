@@ -28,8 +28,8 @@ resource "azurerm_subnet" "this" {
   private_endpoint_network_policies_enabled     = try(each.value.private_endpoint_network_policies_enabled, true)
   private_link_service_network_policies_enabled = try(each.value.private_link_service_network_policies_enabled, true)
   service_endpoints                             = try(each.value.service_endpoints, null)
+  service_endpoint_policy_ids                   = try(each.value.service_endpoint_policy_ids, null)
   #TODO: #1 Add dynamic delegation block
-  #TODO: #2 Add service endpoint support
   #TODO: #3 Add service endpoint policy id support
   #TODO: #4 Add service delegation block support
 }
