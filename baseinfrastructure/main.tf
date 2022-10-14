@@ -62,3 +62,23 @@ resource "azurerm_subnet_network_security_group_association" "this" {
   subnet_id                 = azurerm_subnet.this[each.value.subnet_key].id
   network_security_group_id = azurerm_network_security_group.this[each.key].id
 }
+
+/* resource "azurerm_bastion_host" "this" {
+  for_each = var.bastions
+  name = each.key
+  location            = azurerm_resource_group.this[each.value.resource_group_key].location
+  resource_group_name = azurerm_resource_group.this[each.value.resource_group_key].name
+  copy_paste_enabled = true
+  file_copy_enabled = true
+  ip_connect_enabled = true
+  tunneling_enabled = true
+  sku = "Standard"
+  tags = merge(var.tags, local.tags)
+
+  ip_configuration {
+    name = ""
+    # Must be named AzureBastionSubnet >= /26
+    subnet_id = ""
+    public_ip_address_id = ""
+  }
+} */
