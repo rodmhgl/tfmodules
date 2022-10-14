@@ -5,7 +5,6 @@ variable "tags" {
 
 variable "resource_groups" {
   type = map(object({
-    /* resource_group_name     = string */
     resource_group_location = string
     tags                    = map(string)
   }))
@@ -14,7 +13,6 @@ variable "resource_groups" {
 
 variable "virtual_networks" {
   type = map(object({
-    /* name               = string */
     resource_group_key = string
     address_space      = list(string)
     dns_servers        = optional(list(string))
