@@ -35,9 +35,9 @@ resource "azurerm_subnet" "this" {
   dynamic "delegation" {
     for_each = each.value.delegation != null ? each.value.delegation : {}
     content {
-      name = delegation.value.name
+      name = delegation.key
       service_delegation {
-        name    = delegation.value.name
+        name    = delegation.key
         actions = delegation.value.actions
       }
     }
@@ -55,7 +55,7 @@ resource "azurerm_network_security_group" "this" {
   dynamic "security_rule" {
     for_each = each.value.security_rules
     content {
-      name                       = security_rule.value.name
+      name                       = security_rule.key
       priority                   = security_rule.value.priority
       direction                  = security_rule.value.direction
       access                     = security_rule.value.access

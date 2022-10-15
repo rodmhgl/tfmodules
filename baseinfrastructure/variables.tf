@@ -27,8 +27,9 @@ variable "subnets" {
     private_endpoint_network_policies_enabled     = optional(bool)
     private_link_service_network_policies_enabled = optional(bool)
     service_endpoints                             = optional(list(string))
+    service_endpoint_policy_ids                   = optional(list(string))
+
     delegation = optional(map(object({
-      name    = string
       actions = optional(list(string))
     })))
   }))
@@ -40,7 +41,6 @@ variable "nsgs" {
     resource_group_key = string
     subnet_key         = string
     security_rules = map(object({
-      name                       = string
       priority                   = string
       direction                  = string
       access                     = string
