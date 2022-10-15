@@ -27,6 +27,10 @@ variable "subnets" {
     private_endpoint_network_policies_enabled     = optional(bool)
     private_link_service_network_policies_enabled = optional(bool)
     service_endpoints                             = optional(list(string))
+    delegation = optional(map(object({
+      name    = string
+      actions = optional(list(string))
+    })))
   }))
   description = "Map of subnets to create."
 }

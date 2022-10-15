@@ -30,8 +30,20 @@ resource "azurerm_subnet" "this" {
   service_endpoints                             = try(each.value.service_endpoints, null)
   service_endpoint_policy_ids                   = try(each.value.service_endpoint_policy_ids, null)
   #TODO: #1 Add dynamic delegation block
-  #TODO: #3 Add service endpoint policy id support
   #TODO: #4 Add service delegation block support
+
+  dynamic "delegation" {
+    for_each = each.value.delegation != null ? each.value.delegation : {}
+    content {
+      name = delegation.value.name
+      service_delegation {
+        name    = delegation.value.name
+        actions = delegation.value.actions
+      }
+    }
+  }
+
+  #TODO: #3 Add service endpoint policy id support
 }
 
 resource "azurerm_network_security_group" "this" {
