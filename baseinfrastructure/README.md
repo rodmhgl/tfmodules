@@ -40,6 +40,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_locations"></a> [locations](#output\_locations) | n/a |
 | <a name="output_resource_groups"></a> [resource\_groups](#output\_resource\_groups) | n/a |
 | <a name="output_subnet_ids"></a> [subnet\_ids](#output\_subnet\_ids) | n/a |
 | <a name="output_vnet_ids"></a> [vnet\_ids](#output\_vnet\_ids) | n/a |
