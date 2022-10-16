@@ -2,6 +2,10 @@ output "resource_groups" {
   value = { for k, rg in azurerm_resource_group.this : k => rg.name }
 }
 
+output "locations" {
+  value = { for k, rg in azurerm_resource_group.this : k => rg.location }
+}
+
 output "vnet_ids" {
   value = { for k, vn in azurerm_virtual_network.this : k => vn.id }
 }
