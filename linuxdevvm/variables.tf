@@ -8,4 +8,11 @@ variable "linux_dev_vms" {
   }))
 }
 
-variable "baseinfrastructure" {}
+variable "baseinfrastructure" {
+  type = object({
+    locations       = map(string)
+    resource_groups = map(string)
+    subnet_ids      = map(string)
+    vnet_ids        = map(string)
+  })
+}

@@ -1,4 +1,4 @@
-# TODO: Basic VM Creation
+# TODO: #12 Basic Linux VM Creation
 # -- 
 
 resource "azurerm_linux_virtual_machine" "this" {
@@ -14,7 +14,7 @@ resource "azurerm_linux_virtual_machine" "this" {
 
   admin_ssh_key {
     username   = each.value.admin_username
-    public_key = try(file(each.value.public_key),file("~/.ssh/id_rsa.pub")) #lookup(each.value, file(public_key), file("~/.ssh/id_rsa.pub")) # != null ? each.value.public_key : file("~/.ssh/id_rsa.pub")
+    public_key = try(file(each.value.public_key), file("~/.ssh/id_rsa.pub")) #lookup(each.value, file(public_key), file("~/.ssh/id_rsa.pub")) # != null ? each.value.public_key : file("~/.ssh/id_rsa.pub")
   }
 
   os_disk {
